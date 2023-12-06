@@ -1,19 +1,17 @@
 class Solution {
 public:
-    unordered_map<int,int> memo;
-
-    int decode(string s, int index){
-        if(memo.find(index)!=memo.end()) return memo[index];
-        if(index==s.size()) return 1;
-        if(s[index]=='0') return 0;
-
-        int ans=decode(s,index+1);
-        if(index + 1 < s.size() && stoi(s.substr(index,2))<=26){
-            ans+=decode(s,index+2);
-        }
-        return memo[index]=ans;
-    }
     int numDecodings(string s) {
-        return decode(s,0);
+        vector<int> dp(s.size()+1);
+        dp[0]=1;
+        dp[1]=(s[0]=='0')?0:1;
+
+        for(int i=2;i<dp.size();i++){
+            if(s[i-1]!='0') dp[i]+=dp[i-1];
+            int twod=stoi(s.substr(i-2,2));
+            if(twod>=10 && twod<=26){
+                dp[i]+=dp[i-2];
+            }
+        }
+        return dp[s.length()];
     }
 };
