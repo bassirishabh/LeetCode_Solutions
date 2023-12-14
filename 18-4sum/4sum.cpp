@@ -6,8 +6,8 @@ public:
         set<vector<int>> st;
 
 
-        for(int i=0;i<n-3;i++){
-            for(int b=i+1;b<n-2;b++){
+        for(int i=0;i<n;i++){
+            for(int b=i+1;b<n;b++){
                 int left=b+1;
                 int right=n-1;
                 while(left<right){
