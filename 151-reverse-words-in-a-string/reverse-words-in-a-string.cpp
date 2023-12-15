@@ -9,8 +9,9 @@ public:
                 word+=s[i];
                 i++;
             }
-            i++;
+            
             if(word!="") st.push(word);
+            i++;
         }
         string s1="";
         while(!st.empty()){
