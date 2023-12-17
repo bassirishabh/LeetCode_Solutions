@@ -2,8 +2,7 @@ class Solution {
 public:
     bool rotateString(string s, string goal) {
         if(s.size()!=goal.size()) return false;
-        string ss=s+s;
-        
-        return ss.find(goal)!=string::npos;
+        string concat=s+s;
+        return concat.find(goal)!=string::npos;
     }
 };
