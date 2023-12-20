@@ -1,25 +1,29 @@
 class Solution {
 public:
-    int myAtoi(string s) {
-        int answer=0;
+    int solve(string s,int sign,int i,long long result){
+        if(sign*result>=INT_MAX) return INT_MAX;
+        if(sign*result<=INT_MIN) return INT_MIN;
 
+        if(s[i]==' '|| !isdigit(s[i])) return result*sign;
+        int sol=s[i]-'0';
+        return solve(s,sign,i+1,result*10+sol);
+    }
+    int myAtoi(string s) {
         int i=0;
         while(i<s.size() && s[i]==' ') i++;
-        if(i==s.size()) return answer;
-        int sign=1;;
+        int sign=1;
+        int flag=0;
         if(s[i]=='-'){
             sign=-1;
             i++;
+            flag++;
         }
-        else if(s[i]=='+') i++;
-        while(i<s.size() && isdigit(s[i])){
-            if((answer>INT_MAX/10) || (answer==INT_MAX/10 && (s[i]-'0')>INT_MAX%10)) return sign==1?INT_MAX:INT_MIN;
-
-            answer=answer*10+(s[i]-'0');
-           
+        if(s[i]=='+'){
+            sign=1;
             i++;
+            flag++;
         }
-        return sign*answer;
-
+        if(flag>1) return 0;
+        return solve(s,sign,i,0);
     }
 };
