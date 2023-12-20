@@ -1,16 +1,16 @@
 class Solution {
 public:
     vector<string> result;
-    unordered_map<char,string> umap;
-    void backtrack(string digits,string curr,int index){
-        if(curr.size()==digits.size()){
-            result.push_back(curr);
+    unordered_map<int,string> umap;
+    void backtrack(string digits,int index,string temp){
+        if(temp.size()==digits.size()){
+            result.push_back(temp);
             return;
         }
         for(auto c:umap[digits[index]]){
-            curr+=c;
-            backtrack(digits,curr,index+1);
-            curr.pop_back();
+            temp+=c;
+            backtrack(digits,index+1,temp);
+            temp.pop_back();
         }
     }
     vector<string> letterCombinations(string digits) {
@@ -23,7 +23,7 @@ public:
         umap['7']="pqrs";
         umap['8']="tuv";
         umap['9']="wxyz";
-        backtrack(digits,{},0);
+        backtrack(digits,0,"");
         return result;
     }
 };
