@@ -5,21 +5,23 @@ public:
         sort(nums.begin(),nums.end());
         for(int i=0;i<nums.size();i++){
             if(i>0 && nums[i]==nums[i-1]) continue;
-            int left=i+1;
-            int right=nums.size()-1;
-            while(left<right){
-                int sum=nums[i]+nums[left]+nums[right];
+            int j=i+1;
+            int k=nums.size()-1;
+            while(j<k){
+                int sum=nums[i]+nums[j]+nums[k];
                 if(sum==0){
-                    vector<int> temp={nums[i],nums[left],nums[right]};
+                    vector<int> temp={nums[i],nums[j],nums[k]};
                     result.push_back(temp);
-                    while(left<right && temp[1]==nums[left]) left++;
-                    while(left<right && temp[2]==nums[right]) right--;
-     
-                }else if(sum<0) left++;
-                else right--;
+                    while(j<k && nums[j]==temp[1]) j++;
+                    while(j<k && nums[k]==temp[2]) k--;
+
+                }else if(sum<0){
+                    j++;
+                }else{
+                    k--;
+                }
             }
         }
         return result;
-
     }
 };
