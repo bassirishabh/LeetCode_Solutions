@@ -12,9 +12,9 @@ public:
     string get(string key, int timestamp) {
         if(umap.find(key)==umap.end()) return "";
         if(timestamp<umap[key][0].first) return "";
+
         int left=0;
         int right=umap[key].size()-1;
-
         while(left<=right){
             int mid=(left+right)/2;
             if(umap[key][mid].first<=timestamp){
