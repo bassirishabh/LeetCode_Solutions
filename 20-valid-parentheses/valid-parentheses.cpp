@@ -5,18 +5,18 @@ public:
         umap[')']='(';
         umap[']']='[';
         umap['}']='{';
-        stack<int> st;
-        for(auto i:s){
-            if(umap.find(i)!=umap.end()){
-                if(st.empty() || st.top()!=umap[i]){
+
+        stack<char> st;
+
+        for(int i=0;i<s.size();i++){
+            if(umap.find(s[i])!=umap.end()){
+                if(st.empty() || st.top()!=umap[s[i]]){
+                     
                     return false;
                 }
                 st.pop();
-            }
-
-            else {
-                st.push(i);
-            }
+               
+            }else st.push(s[i]);
 
         }
         return st.empty();
