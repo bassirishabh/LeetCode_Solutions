@@ -4,12 +4,12 @@ public:
         vector<vector<string>> result;
         unordered_map<string,vector<string>> umap;
         for(auto i:strs){
-            string s=i;
-            sort(s.begin(),s.end());
-            umap[s].push_back(i);
+            string t=i;
+            sort(t.begin(),t.end());
+            umap[t].push_back(i);
         }
-        for(auto it:umap){
-            result.push_back(it.second);
+        for(auto i:umap){
+            result.push_back(i.second);
         }
         return result;
     }
