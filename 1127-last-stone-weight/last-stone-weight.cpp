@@ -4,7 +4,6 @@ public:
         priority_queue<int> pq;
 
         for(auto i:stones) pq.push(i);
-        
 
         while(pq.size()>1){
             int topmost=pq.top();
