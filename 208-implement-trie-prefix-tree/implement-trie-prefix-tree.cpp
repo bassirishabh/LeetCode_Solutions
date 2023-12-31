@@ -2,8 +2,6 @@ struct TrieNode{
     unordered_map<char,TrieNode*> children;
     bool endofword=false;
 };
-
-
 class Trie {
 public:
     TrieNode* root=new TrieNode();
@@ -25,9 +23,7 @@ public:
     bool search(string word) {
         TrieNode* node=root;
         for(auto c:word){
-            if(node->children.find(c)==node->children.end()){
-                return false;
-            }
+            if(node->children.find(c)==node->children.end()) return false;
             node=node->children[c];
         }
         return node->endofword;
@@ -36,9 +32,7 @@ public:
     bool startsWith(string prefix) {
         TrieNode* node=root;
         for(auto c:prefix){
-            if(node->children.find(c)==node->children.end()){
-                return false;
-            }
+            if(node->children.find(c)==node->children.end()) return false;
             node=node->children[c];
         }
         return true;
