@@ -1,8 +1,9 @@
 class Solution {
 public:
+    unordered_map<char,string> umap;
     vector<string> result;
-    unordered_map<int,string> umap;
-    void backtrack(string digits,int index,string temp){
+
+    void backtrack(string digits,int index, string temp){
         if(temp.size()==digits.size()){
             result.push_back(temp);
             return;
@@ -23,7 +24,9 @@ public:
         umap['7']="pqrs";
         umap['8']="tuv";
         umap['9']="wxyz";
+
         backtrack(digits,0,"");
         return result;
+
     }
 };
