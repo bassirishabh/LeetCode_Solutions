@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int rows;
+     int rows;
     int cols;
     void transpose(vector<vector<int>>& matrix){
         for(int i=0;i<rows;i++){
@@ -13,11 +13,7 @@ public:
     }
     void reflect(vector<vector<int>>& matrix){
         for(int i=0;i<rows;i++){
-            for(int j=0;j<cols/2;j++){
-                int temp=matrix[i][j];
-                matrix[i][j]=matrix[i][cols-j-1];
-                matrix[i][cols-j-1]=temp;
-            }
+            reverse(matrix[i].begin(),matrix[i].end());
         }
     }
     void rotate(vector<vector<int>>& matrix) {
@@ -25,6 +21,6 @@ public:
         cols=matrix[0].size();
         transpose(matrix);
         reflect(matrix);
-
+        
     }
 };
