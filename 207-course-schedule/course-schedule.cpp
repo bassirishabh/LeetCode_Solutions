@@ -10,18 +10,20 @@ public:
         }
         queue<int> q;
         for(int i=0;i<numCourses;i++){
-            if(numdegrees[i]==0) q.push(i);
+            if(numdegrees[i]==0){
+                q.push(i);
+            }
         }
         int visit=0;
         while(!q.empty()){
             int node=q.front();
             q.pop();
             visit++;
-            for(auto adj:adj[node]){
-                numdegrees[adj]--;
-                if(numdegrees[adj]==0) q.push(adj);
+            for(auto n:adj[node]){
+                numdegrees[n]--;
+                if(numdegrees[n]==0) q.push(n);
             }
         }
-        return visit==numCourses;
+        return (visit==numCourses);
     }
 };
