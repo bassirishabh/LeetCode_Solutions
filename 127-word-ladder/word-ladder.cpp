@@ -24,6 +24,8 @@ public:
                 }
                 word.first[i]=original;
             }
+            
+
         }
         return 0;
     }
