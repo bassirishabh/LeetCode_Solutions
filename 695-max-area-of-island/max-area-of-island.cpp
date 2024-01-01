@@ -1,6 +1,5 @@
 class Solution {
-public:
-    int rows;
+public:int rows;
     int cols;
 
     int dfs(vector<vector<int>>& grid,int i,int j){
