@@ -25,11 +25,10 @@ public:
     Node* cloneGraph(Node* node) {
         if(node==NULL) return NULL;
         if(umap.find(node)!=umap.end()) return umap[node];
-
         Node* newnode=new Node(node->val);
         umap[node]=newnode;
-        for(auto adj:node->neighbors){
-            newnode->neighbors.push_back(cloneGraph(adj));
+        for(auto nei:node->neighbors){
+            newnode->neighbors.push_back(cloneGraph(nei));
         }
         return newnode;
     }
