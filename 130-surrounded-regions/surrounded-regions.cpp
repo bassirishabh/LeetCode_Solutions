@@ -12,7 +12,7 @@ public:
         dfs(board,i,j-1);
     }
     void solve(vector<vector<char>>& board) {
-        rows=board.size();
+         rows=board.size();
         cols=board[0].size();
 
         for(int i=0;i<rows;i++){
@@ -30,5 +30,6 @@ public:
                 if(board[i][j]=='*') board[i][j]='O';
             }
         }
+
     }
 };
