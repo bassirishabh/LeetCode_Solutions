@@ -37,6 +37,5 @@ public:
                 matrix[i][0]=0;
             }
         }
-        
     }
 };
