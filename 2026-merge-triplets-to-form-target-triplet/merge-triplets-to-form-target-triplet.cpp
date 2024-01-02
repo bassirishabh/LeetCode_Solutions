@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool mergeTriplets(vector<vector<int>>& triplets, vector<int>& target) {
-      int n=triplets.size();
+        int n=triplets.size();
       bool one=false,two=false,three=false;
 
       for(int i=0;i<n;i++){
