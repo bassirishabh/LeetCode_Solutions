@@ -7,11 +7,10 @@ public:
         int right=0;
         int maxfreq=0;
         int maxlen=0;
-
         while(right<s.size()){
             freqmap[s[right]-'A']++;
             maxfreq=max(maxfreq,freqmap[s[right]-'A']);
-            while((right-left+1)-maxfreq>k){
+            while((right-left+1-maxfreq)>k){
                 freqmap[s[left]-'A']--;
                 left++;
             }
@@ -19,5 +18,7 @@ public:
             right++;
         }
         return maxlen;
+
+
     }
 };
