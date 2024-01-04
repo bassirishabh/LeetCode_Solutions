@@ -2,29 +2,29 @@ class Solution {
 public:
     int rows;
     int cols;
-    void dfs(int i,int j,vector<vector<char>>& grid){
-      if(i<0 || i>=rows || j<0 ||j>=cols || grid[i][j]=='0') return;
-
-      grid[i][j]='0';
-      dfs(i+1,j,grid);
-      dfs(i-1,j,grid);
-      dfs(i,j+1,grid);
-      dfs(i,j-1,grid);
+    
+    void dfs(vector<vector<char>>& grid,int i,int j){
+        if(i<0 || i>=rows || j<0 || j>=cols || grid[i][j]=='0') return;
+        grid[i][j]='0';
+        dfs(grid,i+1,j);
+        dfs(grid,i-1,j);
+        dfs(grid,i,j+1);
+        dfs(grid,i,j-1);
 
     }
-
     int numIslands(vector<vector<char>>& grid) {
         rows=grid.size();
         cols=grid[0].size();
-        int numislands=0;
+        int count=0;
+
         for(int i=0;i<rows;i++){
-          for(int j=0;j<cols;j++){
-            if(grid[i][j]=='1'){
-              numislands++;
-              dfs(i,j,grid);
+            for(int j=0;j<cols;j++){
+                if(grid[i][j]=='1'){
+                    count++;
+                    dfs(grid,i,j);
+                }
             }
-          }
         }
-        return numislands;
+        return count;
     }
 };
