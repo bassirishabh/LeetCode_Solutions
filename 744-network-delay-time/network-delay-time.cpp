@@ -1,43 +1,41 @@
 class Solution {
 public:
-    void dijkstra(vector<int>& signal, int n, int k, vector<vector<pair<int, int>>>& adj){
-      priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-      pq.push({0, k});
-
-      signal[k] = 0;
-
-      while (!pq.empty()) {
-        auto t = pq.top();
-        pq.pop();
-        int curnode = t.second;
-        int curtime = t.first;
-
-        if (curtime > signal[curnode]) continue;
-        for (pair<int, int> edge : adj[curnode]) {
-          int time = edge.first;
-          int nei = edge.second;
-
-          if (signal[nei] > curtime + time) {
-            signal[nei] = curtime + time;
-            pq.push({signal[nei], nei});
-          }
-        }
-      }
-    }
-
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-        vector<vector<pair<int, int>>> adj(n + 1);
-        for (auto t : times) {
-          adj[t[0]].push_back({t[2], t[1]});
+        vector<vector<pair<int,int>>> adj(n+1);
+        for(auto f:times){
+            adj[f[0]].push_back({f[1],f[2]});
         }
-        vector<int> signal(n + 1, INT_MAX);
-        dijkstra(signal, n, k, adj);
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        pq.push({0,k});
+        vector<int> dist(n+1,INT_MAX);
+        dist[k]=0;
+        while(!pq.empty()){
+            int adjnode=pq.top().second;
+            int wt=pq.top().first;
+            pq.pop();
 
-        int ans = INT_MIN;
+            for(auto it:adj[adjnode]){
+                int adj=it.first;
+                int edW=it.second;
+                if(wt+edW<dist[adj]){
+                    dist[adj]=wt+edW;
+                    pq.push({wt+edW,adj});
+                }
+            }
 
-        for (int i = 1; i <= n; i++) {
-          ans = max(ans, signal[i]);
         }
-        return (ans == INT_MAX) ? -1 : ans;
+        int mini = INT_MIN;
+        for(int i=1; i<=n; i++)
+        {
+            if(i!=k and dist[i]==INT_MAX)
+            {
+                return -1;
+            }
+            
+            mini = max(mini,dist[i]);
+            
+        }
+                               
+        return mini;
     }
 };
