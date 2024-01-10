@@ -3,16 +3,14 @@ struct Node{
     int val;
     Node* prev;
     Node* next;
-    Node(int key,int val): key(key),val(val),next(NULL),prev(NULL){}
+    Node(int key,int val): key(key), val(val), prev(NULL), next(NULL){}
 };
-
 class LRUCache {
-public:
     unordered_map<int,Node*> umap;
     int capacity;
     Node* head=new Node(-1,-1);
     Node* tail=new Node(-1,-1);
-
+public:
     LRUCache(int capacity) {
         this->capacity=capacity;
         head->next=tail;
@@ -36,9 +34,9 @@ public:
         umap[key]=output;
         add(output);
         if(umap.size()>capacity){
-            Node* nodedel=head->next;
-            remove(nodedel);
-            umap.erase(nodedel->key);
+            Node* noddel=head->next;
+            remove(noddel);
+            umap.erase(noddel->key);
         }
     }
     void remove(Node* node){
@@ -52,7 +50,7 @@ public:
         node->prev=prevnode;
         node->next=tail;
         tail->prev=node;
-    }  
+    }
 };
 
 /**
