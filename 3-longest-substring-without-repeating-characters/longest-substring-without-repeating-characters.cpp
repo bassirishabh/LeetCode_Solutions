@@ -3,18 +3,17 @@ public:
     int lengthOfLongestSubstring(string s) {
         unordered_map<char,int> umap;
 
-        int left=0;
-        int right=0;
-
+        int i=0;
+        int j=0;
         int maxlen=0;
-        while(right<s.size()){
-            umap[s[right]]++;
-            while(umap[s[right]]>1){
-                umap[s[left]]--;
-                left++;
+        while(i<s.size()){
+            umap[s[i]]++;
+            while(umap[s[i]]>1){
+                umap[s[j]]--;
+                j++;
             }
-            maxlen=max(maxlen,right-left+1);
-            right++;
+            maxlen=max(maxlen,i-j+1);
+            i++;
         }
         return maxlen;
     }
