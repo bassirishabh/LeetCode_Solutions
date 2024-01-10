@@ -4,6 +4,7 @@ public:
         vector<int> numdegrees(numCourses);
         vector<vector<int>> adj(numCourses);
         vector<int> result;
+
         for(auto p:prerequisites){
             adj[p[1]].push_back(p[0]);
             numdegrees[p[0]]++;
@@ -19,9 +20,9 @@ public:
             int node=q.front();
             q.pop();
             result.push_back(node);
-            for(auto n:adj[node]){
-                numdegrees[n]--;
-                if(numdegrees[n]==0) q.push(n);
+            for(auto ad:adj[node]){
+                numdegrees[ad]--;
+                if(numdegrees[ad]==0) q.push(ad);
             }
         }
         if(result.size()==numCourses) return result;
