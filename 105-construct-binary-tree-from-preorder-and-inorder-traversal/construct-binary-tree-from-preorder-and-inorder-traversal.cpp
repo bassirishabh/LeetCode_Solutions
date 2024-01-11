@@ -14,12 +14,12 @@ public:
     unordered_map<int,int> umap;
     int preorderindex;
 
-    TreeNode* build(vector<int>& preorder,int left,int right){
+    TreeNode* build(vector<int> preorder,int left,int right){
         if(left<=right){
-            int rootvalue=preorder[preorderindex++];
-            TreeNode* node=new TreeNode(rootvalue);
-            node->left=build(preorder,left,umap[rootvalue]-1);
-            node->right=build(preorder,umap[rootvalue]+1,right);
+            int value=preorder[preorderindex++];
+            TreeNode* node=new TreeNode(value);
+            node->left=build(preorder,left,umap[value]-1);
+            node->right=build(preorder,umap[value]+1,right);
             return node;
         }
         return NULL;
