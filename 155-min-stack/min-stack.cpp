@@ -10,8 +10,12 @@ public:
             st.push({val,val});
             return;
         }
-        int mival=min(st.top().second,val);
-        st.push({val,mival});
+        int tp=st.top().second;
+        if(val<tp){
+            st.push({val,val});
+        }else{
+            st.push({val,tp});
+        }
 
     }
     
