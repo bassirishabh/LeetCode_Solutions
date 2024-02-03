@@ -11,10 +11,10 @@
  */
 class Solution {
 public:
-    unordered_map<int,int> umap;
     int preorderindex;
+    unordered_map<int,int> umap;
 
-    TreeNode* build(vector<int> preorder,int left,int right){
+    TreeNode* build(vector<int>& preorder,int left,int right){
         if(left<=right){
             int value=preorder[preorderindex++];
             TreeNode* node=new TreeNode(value);
@@ -24,7 +24,6 @@ public:
         }
         return NULL;
     }
-
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         preorderindex=0;
         for(int i=0;i<inorder.size();i++) umap[inorder[i]]=i;
