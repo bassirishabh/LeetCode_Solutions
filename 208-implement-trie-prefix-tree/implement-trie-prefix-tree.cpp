@@ -27,6 +27,7 @@ public:
             node=node->children[c];
         }
         return node->endofword;
+    
     }
     
     bool startsWith(string prefix) {
