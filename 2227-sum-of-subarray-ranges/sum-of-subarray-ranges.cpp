@@ -4,14 +4,25 @@ public:
         int n=nums.size();
         long long answer=0;
 
-        for(int left=0;left<n;left++){
-            int minval=nums[left];
-            int maxval=nums[left];
-            for(int right=left;right<n;right++){
-                minval=min(minval,nums[right]);
-                maxval=max(maxval,nums[right]);
-                answer+=maxval-minval;
+        stack<int> st;
+        for(int right=0;right<=n;right++){
+            while(!st.empty() && (right==n || nums[st.top()]>=nums[right])){
+                int mid=st.top();
+                st.pop();
+                int left=st.empty()?-1:st.top();
+                answer-=(long long)nums[mid]*(right-mid)*(mid-left);
             }
+            st.push(right);
+        }
+        st.pop();
+        for(int right=0;right<=n;right++){
+            while(!st.empty() && (right==n || nums[st.top()]<=nums[right])){
+                int mid=st.top();
+                st.pop();
+                int left=st.empty()?-1:st.top();
+                answer+=(long long)nums[mid]*(right-mid)*(mid-left);
+            }
+            st.push(right);
         }
         return answer;
     }
