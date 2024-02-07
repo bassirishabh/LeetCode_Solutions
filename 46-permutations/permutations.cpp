@@ -1,9 +1,9 @@
 class Solution {
 public:
-    vector<vector<int>> result;
+    vector<vector<int>>  result;
 
     void backtrack(vector<int>& nums,vector<int> curr){
-        if(nums.size()==curr.size()){
+        if(curr.size()==nums.size()){
             result.push_back(curr);
             return;
         }
